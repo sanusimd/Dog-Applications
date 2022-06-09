@@ -1,0 +1,45 @@
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.app {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  text-align: center;
+  background-color: green;
+  padding: 2rem;
+}
+
+.header h1 {
+  font-size: 5 0px;
+  margin: 0 0 20px 0;
+  color: #fff;
+}
+
+.header select {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.slideshow {
+  flex: 1;
+  background-color: #333;
+  position: relative;
+}
+
+.slide {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
