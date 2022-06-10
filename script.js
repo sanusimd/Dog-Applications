@@ -1,3 +1,7 @@
+// Global variable
+let timer;
+let DeleteFirstPhotodelay;
+
 // fetch the breeds list
 async function start() {
   const response = await fetch("https://dog.ceo/api/breeds/list/all");
@@ -30,7 +34,10 @@ async function loadByBreed(breed) {
 // Create  Slideshow function
 function createSlideshow(images) {
   let currentPosition = 0;
-  document.getElementById("slideshow").innerHTML = `
+  clearInterval(timer);
+  setTimeout(DeleteFirstPhotodelay);
+  if (images.length > 1) {
+    document.getElementById("slideshow").innerHTML = `
     <div
     class="slide"
     style="
@@ -45,8 +52,21 @@ function createSlideshow(images) {
   ></div>
    `;
 
-  currentPosition += 2;
-  setInterval(nextSlide, 3000);
+    currentPosition += 2;
+
+    if (images.length == 2) currentPosition = 0;
+    timer = setInterval(nextSlide, 3000);
+  } else {
+    document.getElementById("slideshow").innerHTML = `
+    <div
+    class="slide"
+    style="
+      background-image: url('${images[0]}');
+    "
+  ></div>
+  <div class="slide"></div>
+   `;
+  }
   // function for nextslides
   function nextSlide() {
     document.getElementById("slideshow").insertAdjacentHTML(
@@ -60,12 +80,13 @@ function createSlideshow(images) {
   ></div> 
     `
     );
-    setTimeout(function () {
+    DeleteFirstPhotodelay = setTimeout(function () {
       document.querySelector(".slide").remove();
     }, 1000);
-
-    currentPosition++;
+    if (currentPosition + 1 >= images.length) {
+      currentPosition = 0;
+    } else {
+      currentPosition++;
+    }
   }
-
-  console.log(images);
 }
