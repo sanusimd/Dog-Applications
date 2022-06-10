@@ -53,7 +53,7 @@ function createSlideshow(images) {
    `;
 
     currentPosition += 2;
-
+    // Check if the dog has only two imagesg
     if (images.length == 2) currentPosition = 0;
     timer = setInterval(nextSlide, 3000);
   } else {
